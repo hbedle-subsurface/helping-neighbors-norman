@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Helping Neighbors Norman</title>
+<meta name="description" content="Vecinos que Ayudan - Ayuda en Norman, Oklahoma: comida, vivienda, salud y más. Toque una imagen y escuche la información en español. Help in Norman, Oklahoma, with audio in Spanish.">
+<meta name="theme-color" content="#2B2F77">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%232B2F77'/%3E%3Cg fill='%23fff'%3E%3Crect x='19' y='33' width='28' height='22' rx='10'/%3E%3Crect x='19' y='14' width='6' height='28' rx='3'/%3E%3Crect x='26' y='9' width='6' height='33' rx='3'/%3E%3Crect x='33' y='11' width='6' height='31' rx='3'/%3E%3Crect x='40' y='16' width='6' height='26' rx='3'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1D2150;
+  --ink-soft:#4B4F7D;
+  --indigo:#2B2F77;
+  --indigo-dk:#1D2150;
+  --violet:#6A47E0;
+  --lilac:#ECE6FA;
+  --paper:#F7F4FB;
+  --card:#FFFFFF;
+  --line:#DDD6EE;
+  --wa:#16863F;
+  --focus:#FFB300;
+  --shadow:0 1px 2px rgba(29,33,80,.08), 0 8px 22px rgba(29,33,80,.08);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:19px;line-height:1.45;
+}
+button,input{font:inherit;color:inherit}
+a{color:var(--indigo)}
+:focus-visible{outline:4px solid var(--focus);outline-offset:2px}
+svg{display:block}
+
+/* ---------- header ---------- */
+header.top{background:var(--indigo);color:#fff}
+.top-in{max-width:980px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;margin-right:auto;min-width:0}
+.brand .mark{width:52px;height:52px;flex:none}
+.brand b{display:block;font-size:26px;line-height:1.05;font-weight:700;letter-spacing:.2px}
+.brand small{display:block;font-size:15px;opacity:.9;line-height:1.2}
+.ctl{display:flex;gap:8px;align-items:center}
+.seg{display:flex;background:rgba(255,255,255,.14);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:#fff;padding:9px 16px;min-height:44px;border-radius:999px;font-weight:700;cursor:pointer}
+.seg button[aria-pressed="true"]{background:#fff;color:var(--indigo)}
+.voice-toggle{display:flex;align-items:center;gap:8px;border:2px solid rgba(255,255,255,.55);background:transparent;color:#fff;
+  min-height:48px;padding:6px 14px;border-radius:999px;font-weight:700;cursor:pointer}
+.voice-toggle[aria-pressed="true"]{background:#fff;color:var(--indigo);border-color:#fff}
+.voice-toggle svg{width:26px;height:26px}
+
+main{max-width:980px;margin:0 auto;padding:18px 16px 30px}
+
+/* ---------- home ---------- */
+.ask{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:22px;box-shadow:var(--shadow);padding:14px 16px;margin-bottom:16px}
+.ask h1{font-size:27px;line-height:1.15;margin:0;font-weight:700}
+.ask p{margin:2px 0 0;color:var(--ink-soft);font-size:18px}
+.bigspeak{flex:none;width:68px;height:68px;border-radius:50%;border:0;background:var(--violet);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 0 #4A2DB0}
+.bigspeak svg{width:36px;height:36px}
+.bigspeak:active{transform:translateY(2px);box-shadow:0 2px 0 #4A2DB0}
+.bigspeak.on{background:#4A2DB0}
+
+.find{display:flex;gap:8px;margin:0 0 18px}
+.find .field{flex:1;min-width:0;display:flex;align-items:center;background:#fff;border:2px solid var(--line);border-radius:16px;padding:0 6px 0 14px;min-height:56px}
+.find .field:focus-within{border-color:var(--indigo)}
+.find input{flex:1;border:0;outline:0;background:transparent;min-width:0;font-size:19px;padding:12px 4px}
+.find .field svg{width:24px;height:24px;color:var(--ink-soft);flex:none}
+.iconbtn{border:0;background:var(--lilac);color:var(--indigo);width:46px;height:46px;border-radius:12px;display:grid;place-items:center;cursor:pointer;flex:none}
+.iconbtn svg{width:26px;height:26px;color:inherit}
+.iconbtn.rec{background:#B3261E;color:#fff}
+.find .go{flex:none;background:var(--indigo);color:#fff;border:0;border-radius:16px;padding:0 16px;font-weight:700;min-height:56px;cursor:pointer}
+
+.tiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (min-width:620px){.tiles{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media (min-width:860px){.tiles{grid-template-columns:repeat(4,1fr)}}
+.tile{width:100%;height:100%;min-height:158px;border:0;border-radius:24px;color:#fff;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px 10px;text-align:center;
+  box-shadow:0 5px 0 rgba(0,0,0,.22);font-weight:700;font-size:21px;line-height:1.15;text-decoration:none}
+.tile:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.22)}
+.tile svg{width:76px;height:76px}
+.tile .n{font-size:15px;font-weight:400;opacity:.92}
+
+.sos{margin-top:26px;background:#fff;border-radius:22px;box-shadow:var(--shadow);padding:16px}
+.sos h2{margin:0 0 10px;font-size:22px}
+.sos-row{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:700px){.sos-row{grid-template-columns:repeat(3,1fr)}}
+.sosbtn{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;background:var(--indigo);border-radius:16px;padding:12px 14px;min-height:68px}
+.sosbtn.red{background:#A61B1B}
+.sosbtn svg{width:30px;height:30px;flex:none}
+.sosbtn b{display:block;font-size:26px;line-height:1}
+.sosbtn span{font-size:16px;line-height:1.2;display:block}
+
+.sharebar{margin-top:18px;display:flex;justify-content:center}
+
+/* ---------- list pages ---------- */
+.back{display:inline-flex;align-items:center;gap:10px;border:0;background:var(--indigo);color:#fff;border-radius:16px;padding:10px 20px 10px 14px;font-weight:700;font-size:21px;min-height:56px;cursor:pointer;text-decoration:none}
+.back svg{width:30px;height:30px}
+.cathead{display:flex;align-items:center;gap:16px;margin:16px 0 8px}
+.cathead .ico{flex:none;width:92px;height:92px;border-radius:24px;display:grid;place-items:center;color:#fff}
+.cathead .ico svg{width:64px;height:64px}
+.cathead h1{margin:0;font-size:31px;line-height:1.1}
+.cathead p{margin:4px 0 0;color:var(--ink-soft);font-size:18px}
+.cathead .bigspeak{margin-left:auto}
+.count{color:var(--ink-soft);margin:4px 0 14px}
+h2.group{font-size:20px;margin:26px 0 10px;padding-bottom:6px;border-bottom:3px solid var(--line);color:var(--indigo)}
+
+.card{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:16px 16px 14px;margin:0 0 14px;border-left:10px solid var(--c,#999)}
+.card h3{margin:0 0 6px;font-size:23px;line-height:1.2}
+.card .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:#fff;background:var(--c,#555);border-radius:999px;padding:3px 10px 3px 6px}
+.chip svg{width:18px;height:18px}
+.row{display:flex;gap:8px;align-items:flex-start;margin:4px 0;font-size:19px}
+.row svg{width:22px;height:22px;flex:none;margin-top:3px;color:var(--ink-soft)}
+.row .t{min-width:0;overflow-wrap:anywhere}
+.row .lbl{font-weight:700}
+.phone{font-weight:700;font-size:21px;letter-spacing:.3px}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.acts .act{flex:1 1 150px}
+.act{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;border-radius:14px;border:2px solid var(--indigo);background:#fff;color:var(--indigo);
+  font-weight:700;font-size:18px;text-decoration:none;cursor:pointer;padding:6px 8px}
+.act svg{width:28px;height:28px;flex:none}
+.act.listen{background:var(--violet);border-color:var(--violet);color:#fff}
+.act.listen.on{background:#4A2DB0;border-color:#4A2DB0}
+.act.call{background:var(--indigo);color:#fff}
+.act.wa{background:var(--wa);border-color:var(--wa);color:#fff}
+.act:active{transform:translateY(1px)}
+.empty{background:#fff;border-radius:20px;padding:20px;box-shadow:var(--shadow)}
+
+footer{background:#fff;border-top:1px solid var(--line);margin-top:20px}
+.foot-in{max-width:980px;margin:0 auto;padding:22px 16px 34px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.foot-in img{width:230px;max-width:60%;height:auto}
+.foot-in p{margin:0 0 6px;font-size:16px;color:var(--ink-soft)}
+.foot-in .proj{font-weight:700;color:var(--ink);font-size:17px}
+
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;font-size:17px;max-width:90%;display:none;z-index:9}
+.toast.show{display:block}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{header.top .ctl,.acts,.find,.sos,.back,.bigspeak{display:none}.card{box-shadow:none;border:1px solid #999;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#/" id="brandlink" aria-label="Helping Neighbors Norman">
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#fff"/><g fill="#2B2F77"><rect x="19" y="33" width="28" height="22" rx="10"/><rect x="19" y="14" width="6" height="28" rx="3"/><rect x="26" y="9" width="6" height="33" rx="3"/><rect x="33" y="11" width="6" height="31" rx="3"/><rect x="40" y="16" width="6" height="26" rx="3"/><rect x="9" y="30" width="6" height="20" rx="3" transform="rotate(-28 12 40)"/></g></svg>
+      <span><b id="brandName">Helping Neighbors</b><small id="sub">Norman, Oklahoma</small></span>
+    </a>
+    <div class="ctl">
+      <div class="seg" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">Español</button>
+        <button type="button" data-lang="en" aria-pressed="false">English</button>
+      </div>
+      <button type="button" class="voice-toggle" id="voiceToggle" aria-pressed="true"></button>
+    </div>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<footer>
+  <div class="foot-in">
+    <img src="fcc-logo.jpeg" alt="First Congregational Church of Norman, UCC">
+    <div>
+      <p class="proj" id="projLine"></p>
+      <p id="footNote1"></p>
+      <p id="footNote2"></p>
+      <p id="thanks"></p>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<noscript><p style="padding:20px;font-size:20px">Esta página necesita JavaScript. / This page needs JavaScript.</p></noscript>
+
+<script src="data.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* ===================== settings ===================== */
+const SITE = "https://hbedle-subsurface.github.io/helping-neighbors-norman/";
+const store = {
+  get(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } },
+  set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+};
+let LANG = (new URLSearchParams(location.search).get("lang")) || store.get("lang") || "es";
+if (LANG !== "en") LANG = "es";
+let VOICE = store.get("voice") !== "off";
+
+/* ===================== text ===================== */
+const T = {
+  es:{
+    brand:"Vecinos que Ayudan", sub:"Norman, Oklahoma", ask:"¿Qué ayuda necesita?", hint:"Toque una imagen.",
+    listen:"Escuchar", stop:"Parar", call:"Llamar", map:"Mapa", share:"WhatsApp",
+    back:"Inicio", voiceOn:"Voz: sí", voiceOff:"Voz: no", site:"Sitio web", email:"Correo",
+    addr:"Dirección", hours:"Horario y requisitos", tel:"Teléfono",
+    search:"Escriba o diga lo que busca", go:"Buscar", mic:"Hablar", micStop:"Parar",
+    results:n=>n+(n===1?" resultado":" resultados"), none:"No encontramos nada con esas palabras. Pruebe con otra palabra, por ejemplo: comida, renta, doctor.",
+    places:n=>n+(n===1?" lugar":" lugares"),
+    sosTitle:"En una emergencia", s911:"Emergencia", s911d:"Policía, bomberos, ambulancia",
+    s988:"Crisis emocional", s988d:"Llame o mande texto. Oprima 2 para español.",
+    s211:"Buscar ayuda", s211d:"Línea 211: le ayudan a encontrar servicios",
+    shareSite:"Enviar esta página por WhatsApp", other:"Otros",
+    proj:"Un proyecto de First Congregational Church of Norman, UCC",
+    foot1:"Los horarios y las reglas cambian. Llame antes de ir.",
+    foot2:"Lista revisada en octubre de 2026.",
+    thanks:"Gracias a Mary Sallee, a Martie Buzzard y a todas las personas que reunieron esta información y la mantienen al día.",
+    spokenIntro:"¿Qué ayuda necesita? Toque una imagen. Las imágenes son: ",
+    copied:"Copiado", noMic:"Su teléfono no permite hablar aquí. Escriba la palabra.",
+    spokenCount:n=>n+(n===1?" lugar.":" lugares."), via:"Vecinos que Ayudan - Norman",
+    langName:"es", speechLang:"es-US", sayStop:"Voz apagada"
+  },
+  en:{
+    brand:"Helping Neighbors", sub:"Norman, Oklahoma", ask:"What help do you need?", hint:"Tap a picture.",
+    listen:"Listen", stop:"Stop", call:"Call", map:"Map", share:"WhatsApp",
+    back:"Home", voiceOn:"Voice: on", voiceOff:"Voice: off", site:"Website", email:"Email",
+    addr:"Address", hours:"Hours and requirements", tel:"Phone",
+    search:"Type or say what you need", go:"Search", mic:"Speak", micStop:"Stop",
+    results:n=>n+(n===1?" result":" results"), none:"We found nothing with those words. Try another word, for example: food, rent, doctor.",
+    places:n=>n+(n===1?" place":" places"),
+    sosTitle:"In an emergency", s911:"Emergency", s911d:"Police, fire, ambulance",
+    s988:"Emotional crisis", s988d:"Call or text. Press 2 for Spanish.",
+    s211:"Find help", s211d:"Dial 211: they help you find services",
+    shareSite:"Send this page on WhatsApp", other:"Other",
+    proj:"A project of First Congregational Church of Norman, UCC",
+    foot1:"Hours and rules change. Please call before you go.",
+    foot2:"List reviewed October 2026.",
+    thanks:"Thank you to Mary Sallee, Martie Buzzard and everyone who gathered this information and keeps it up to date.",
+    spokenIntro:"What help do you need? Tap a picture. The pictures are: ",
+    copied:"Copied", noMic:"Your phone does not allow speaking here. Please type the word.",
+    spokenCount:n=>n+(n===1?" place.":" places."), via:"Helping Neighbors Norman",
+    langName:"en", speechLang:"en-US", sayStop:"Voice off"
+  }
+};
+const t = () => T[LANG];
+
+/* ===================== icons (white pictograms, 64 box) ===================== */
+const W = 'fill="#fff"', S = 'fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"';
+const ICON = {
+  food:`<path ${W} d="M7 31h50a25 25 0 0 1-25 24A25 25 0 0 1 7 31z"/><path ${S} d="M22 8c-4 5 4 7 0 13M32 8c-4 5 4 7 0 13M42 8c-4 5 4 7 0 13"/><rect ${W} x="10" y="26" width="44" height="5" rx="2.5"/>`,
+  shelter:`<path ${W} d="M32 7 4 31h8v24h40V31h8z"/><path fill="#000" fill-opacity=".28" d="M26 55V39a6 6 0 0 1 12 0v16z"/>`,
+  health:`<rect ${W} x="6" y="6" width="52" height="52" rx="14"/><path fill="#000" fill-opacity=".30" d="M27 14h10v13h13v10H37v13H27V37H14V27h13z"/>`,
+  money:`<circle ${W} cx="32" cy="32" r="26"/><text x="32" y="45" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="40" fill="#000" fill-opacity=".30">$</text>`,
+  mental:`<path ${W} d="M8 10h48a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H30L16 58V46H8a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4z"/><path fill="#000" fill-opacity=".30" d="M32 38C21 30 20 23 24.500 20.500c3-1.700 6 0 7.500 2.500 1.500-2.500 4.500-4.200 7.500-2.500C44 23 43 30 32 38z"/>`,
+  general:`<rect ${W} x="4" y="12" width="56" height="40" rx="7"/><circle fill="#000" fill-opacity=".30" cx="21" cy="28" r="6"/><path fill="#000" fill-opacity=".30" d="M10 44c0-7 5-10 11-10s11 3 11 10z"/><rect fill="#000" fill-opacity=".30" x="38" y="24" width="16" height="4" rx="2"/><rect fill="#000" fill-opacity=".30" x="38" y="33" width="16" height="4" rx="2"/><rect fill="#000" fill-opacity=".30" x="38" y="42" width="11" height="4" rx="2"/>`,
+  children:`<circle ${W} cx="22" cy="14" r="8"/><path ${W} d="M8 56V34a14 14 0 0 1 28 0v22z"/><circle ${W} cx="47" cy="29" r="6"/><path ${W} d="M37 56V43a10 10 0 0 1 20 0v13z"/>`,
+  clothing:`<path ${W} d="M22 7 4 17l7 14 8-4v30h26V27l8 4 7-14L42 7c0 6-4 9-10 9S22 13 22 7z"/>`,
+  transport:`<rect ${W} x="8" y="6" width="48" height="43" rx="9"/><rect fill="#000" fill-opacity=".30" x="13" y="12" width="38" height="17" rx="4"/><circle fill="#000" fill-opacity=".30" cx="20" cy="39" r="3.500"/><circle fill="#000" fill-opacity=".30" cx="44" cy="39" r="3.500"/><rect ${W} x="12" y="47" width="10" height="11" rx="3"/><rect ${W} x="42" y="47" width="10" height="11" rx="3"/>`,
+  seniors:`<circle ${W} cx="26" cy="10" r="7.500"/><path fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" d="M26 24l-2 18"/><path fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" d="M24 42l-6 15M24 42l7 15M27 28l13 9"/><path fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" d="M44 33v25"/>`,
+  newcomers:`<circle ${S} cx="32" cy="32" r="25"/><path ${S} d="M7 32h50M32 7c-13 14-13 36 0 50M32 7c13 14 13 36 0 50"/>`,
+  pets:`<ellipse ${W} cx="32" cy="43" rx="16" ry="13"/><ellipse ${W} cx="11" cy="28" rx="6" ry="8" transform="rotate(-20 11 28)"/><ellipse ${W} cx="24" cy="15" rx="6" ry="8.500" transform="rotate(-8 24 15)"/><ellipse ${W} cx="40" cy="15" rx="6" ry="8.500" transform="rotate(8 40 15)"/><ellipse ${W} cx="53" cy="28" rx="6" ry="8" transform="rotate(20 53 28)"/>`
+};
+const svg = (inner, vb="0 0 64 64") => `<svg viewBox="${vb}" aria-hidden="true" focusable="false">${inner}</svg>`;
+const catIcon = id => svg(ICON[id] || ICON.general);
+
+const UI = {
+  speaker:`<path fill="currentColor" d="M3 9v6h4l5 5V4L7 9z"/><path fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" d="M15.500 8.500a5 5 0 0 1 0 7M18.500 5.500a9 9 0 0 1 0 13"/>`,
+  speakerOff:`<path fill="currentColor" d="M3 9v6h4l5 5V4L7 9z"/><path fill="none" stroke="currentColor" stroke-width="2.600" stroke-linecap="round" d="M16 9l6 6M22 9l-6 6"/>`,
+  stop:`<rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/>`,
+  phone:`<path fill="currentColor" d="M6.600 10.800a15.100 15.100 0 0 0 6.600 6.600l2.200-2.200a1 1 0 0 1 1-.25 11.400 11.400 0 0 0 3.600.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.500a1 1 0 0 1 1 1c0 1.300.2 2.500.57 3.600a1 1 0 0 1-.25 1z"/>`,
+  pin:`<path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.200 7 13 7 13s7-7.800 7-13a7 7 0 0 0-7-7zm0 9.500A2.500 2.500 0 1 1 12 6.500a2.500 2.500 0 0 1 0 5z"/>`,
+  wa:`<path fill="currentColor" d="M12 2a10 10 0 0 0-8.600 15.100L2 22l5-1.300A10 10 0 1 0 12 2zm5.800 14.200c-.25.700-1.400 1.300-2 1.400-.5.100-1.200.1-1.900-.1a15 15 0 0 1-1.700-.6c-3-1.300-5-4.300-5.100-4.500-.15-.2-1.200-1.600-1.200-3s.75-2.100 1-2.400a1 1 0 0 1 .75-.35h.55c.18 0 .42-.07.65.5l.9 2.200c.1.200.15.400 0 .6l-.35.500c-.15.200-.3.400-.15.650.2.300.85 1.400 1.800 2.200 1.250 1.100 2.300 1.400 2.600 1.600.3.150.5.100.7-.1l.9-1.100c.2-.25.4-.2.650-.1l2.100 1c.3.150.5.200.55.350.1.100.1.700-.15 1.400z"/>`,
+  back:`<path fill="none" stroke="currentColor" stroke-width="3.500" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-8 7 8 7M7 12h13"/>`,
+  mic:`<rect x="9" y="3" width="6" height="12" rx="3" fill="currentColor"/><path fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" d="M5.500 11a6.500 6.500 0 0 0 13 0M12 17.500V21M8.500 21h7"/>`,
+  search:`<circle cx="10.500" cy="10.500" r="6.500" fill="none" stroke="currentColor" stroke-width="2.500"/><path d="M15.500 15.500L21 21" stroke="currentColor" stroke-width="2.800" stroke-linecap="round"/>`,
+  clock:`<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.200"/><path d="M12 7v5l3.500 2" fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round"/>`,
+  link:`<path fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round" d="M10 14a4 4 0 0 0 5.700 0l3-3a4 4 0 0 0-5.700-5.700L12 6.300M14 10a4 4 0 0 0-5.700 0l-3 3a4 4 0 0 0 5.700 5.700L12 17.700"/>`
+};
+const ui = (name, cls="") => `<svg viewBox="0 0 24 24" class="${cls}" aria-hidden="true" focusable="false">${UI[name]}</svg>`;
+
+/* ===================== helpers ===================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm = s => String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const CATS = window.CATEGORIES, ITEMS = window.RESOURCES;
+const catById = Object.fromEntries(CATS.map(c => [c.id, c]));
+const itemName = it => (LANG === "es" && it.ns) ? it.ns : it.n;
+const itemAddr = it => (LANG === "es" && it.as) ? it.as : it.a;
+const itemDet = it => it.d ? (it.d[LANG] || it.d.en) : "";
+const itemGroup = it => it.g ? (it.g[LANG] || it.g.en) : "";
+const telHref = p => "tel:+1" + String(p).replace(/\D/g,"").replace(/^1(?=\d{10}$)/,"");
+const mapHref = it => {
+  const a = it.a || "";
+  const q = it.n + " " + a + (/,|Oklahoma|OKC|Moore|Noble|Lexington/i.test(a) ? "" : " Norman OK");
+  return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+};
+const webHref = w => /^https?:/.test(w) ? w : "https://" + w;
+function toast(msg){ const el=$("#toast"); el.textContent=msg; el.classList.add("show"); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove("show"),2600); }
+
+/* ===================== speech ===================== */
+const canSpeak = "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+let voices = [];
+function loadVoices(){ if(canSpeak) voices = speechSynthesis.getVoices() || []; }
+if (canSpeak){ loadVoices(); speechSynthesis.addEventListener && speechSynthesis.addEventListener("voiceschanged", loadVoices); }
+function pickVoice(){
+  const base = LANG === "es" ? "es" : "en";
+  const list = voices.filter(v => v.lang && v.lang.toLowerCase().replace("_","-").startsWith(base));
+  const rank = v => { const l=v.lang.toLowerCase().replace("_","-");
+    return (LANG==="es" ? (l==="es-us"?0:l==="es-mx"?1:2) : (l==="en-us"?0:1)) + (v.localService?0:0.5); };
+  list.sort((a,b)=>rank(a)-rank(b));
+  return list[0] || null;
+}
+let speakingBtn = null;
+function setSpeakingUI(btn){
+  document.querySelectorAll(".speaking").forEach(b => { b.classList.remove("speaking","on"); b.dataset.state=""; refreshListenLabel(b); });
+  speakingBtn = btn || null;
+  if (btn){ btn.classList.add("speaking","on"); btn.dataset.state="on"; refreshListenLabel(btn); }
+}
+function refreshListenLabel(b){
+  const lab = b.querySelector(".lt");
+  const on = b.classList.contains("speaking");
+  if (lab) lab.textContent = on ? t().stop : t().listen;
+  b.setAttribute("aria-label", (on ? t().stop : t().listen));
+}
+function stopSpeech(){ if(canSpeak) speechSynthesis.cancel(); setSpeakingUI(null); }
+function speak(text, btn){
+  if (!canSpeak || !text) return;
+  if (btn && btn === speakingBtn){ stopSpeech(); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  const v = pickVoice();
+  if (v) u.voice = v;
+  u.lang = v ? v.lang : t().speechLang;
+  u.rate = 0.9;
+  u.onend = u.onerror = () => { if (speakingBtn === btn) setSpeakingUI(null); };
+  setSpeakingUI(btn || null);
+  speechSynthesis.speak(u);
+}
+function spokenPhone(p){
+  const d = String(p).replace(/\D/g,"").replace(/^1(?=\d{10}$)/,"");
+  if (d.length === 10) return [d.slice(0,3),d.slice(3,6),d.slice(6)].map(x=>x.split("").join(" ")).join(", ");
+  return d.split("").join(" ");
+}
+function spokenText(s){
+  const dirs = LANG==="es" ? {N:"Norte",S:"Sur",E:"Este",W:"Oeste"} : {N:"North",S:"South",E:"East",W:"West"};
+  return String(s)
+    .replace(/\b([NSEW])\.\s/g, (m,c)=>dirs[c]+" ")
+    .replace(/\s*[–—]\s*/g, LANG==="es" ? " a " : " to ")
+    .replace(/\b(\d{3})-(\d{3})-(\d{4})\b/g, (m,a,b,c)=>spokenPhone(a+b+c))
+    .replace(/https?:\/\/\S+/g,"")
+    .replace(/&/g, LANG==="es" ? " y " : " and ");
+}
+function cardSpeech(it){
+  const parts = [itemName(it)];
+  const a = itemAddr(it);
+  if (a) parts.push(t().addr + ": " + spokenText(a));
+  const d = itemDet(it);
+  if (d) parts.push(spokenText(d));
+  if (it.p) parts.push(t().tel + ": " + spokenPhone(it.p));
+  if (it.p2) parts.push((it.p2[LANG]||it.p2.en) + ": " + spokenPhone(it.p2.num));
+  return parts.join(". ");
+}
+
+/* ===================== sharing ===================== */
+function waShare(text){ window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank", "noopener"); }
+function shareItem(it){
+  const lines = [itemName(it)];
+  if (itemAddr(it)) lines.push(itemAddr(it));
+  if (itemDet(it)) lines.push(itemDet(it));
+  if (it.p) lines.push(t().tel + ": " + it.p);
+  if (it.w) lines.push(webHref(it.w));
+  lines.push("", t().via + ": " + SITE + (LANG==="en" ? "?lang=en" : ""));
+  waShare(lines.join("\n"));
+}
+
+/* ===================== views ===================== */
+const app = $("#app");
+
+function tileHtml(c){
+  return `<li><button type="button" class="tile" data-cat="${c.id}" style="background:${c.color}" aria-label="${esc(c[LANG].short)}">${catIcon(c.id)}<span>${esc(c[LANG].short)}</span></button></li>`;
+}
+
+function homeView(){
+  stopSpeech();
+  app.innerHTML = `
+    <section class="ask" aria-labelledby="h1">
+      <button type="button" class="bigspeak" id="introSpeak" aria-label="${esc(t().listen)}">${ui("speaker")}</button>
+      <div><h1 id="h1">${esc(t().ask)}</h1><p>${esc(t().hint)}</p></div>
+    </section>
+    <form class="find" id="findForm" role="search">
+      <div class="field">${ui("search")}<input id="q" type="search" enterkeyhint="search" autocomplete="off" placeholder="${esc(t().search)}" aria-label="${esc(t().search)}">
+        <button type="button" class="iconbtn" id="mic" aria-label="${esc(t().mic)}" hidden>${ui("mic")}</button></div>
+      <button class="go" type="submit">${esc(t().go)}</button>
+    </form>
+    <ul class="tiles">${CATS.map(tileHtml).join("")}</ul>
+    <section class="sos" aria-labelledby="sosh">
+      <h2 id="sosh">${esc(t().sosTitle)}</h2>
+      <div class="sos-row">
+        <a class="sosbtn red" href="tel:911">${ui("phone")}<div><b>911</b><span>${esc(t().s911)} - ${esc(t().s911d)}</span></div></a>
+        <a class="sosbtn" href="tel:988">${ui("phone")}<div><b>988</b><span>${esc(t().s988)}. ${esc(t().s988d)}</span></div></a>
+        <a class="sosbtn" href="tel:211">${ui("phone")}<div><b>211</b><span>${esc(t().s211)}. ${esc(t().s211d)}</span></div></a>
+      </div>
+    </section>
+    <div class="sharebar"><button type="button" class="act wa" id="shareSite" style="padding:6px 22px">${ui("wa")}<span>${esc(t().shareSite)}</span></button></div>`;
+  document.title = t().brand + " Norman";
+
+  $("#introSpeak").addEventListener("click", e => {
+    const names = CATS.map(c => c[LANG].short).join(", ");
+    speak(t().spokenIntro + names + ".", e.currentTarget);
+  });
+  app.querySelectorAll(".tile").forEach(b => b.addEventListener("click", () => {
+    const c = catById[b.dataset.cat];
+    if (VOICE) speak(c[LANG].short, null); else stopSpeech();
+    location.hash = "#/c/" + c.id;
+  }));
+  $("#findForm").addEventListener("submit", e => { e.preventDefault(); const v=$("#q").value.trim(); if(v) location.hash = "#/s/" + encodeURIComponent(v); });
+  $("#shareSite").addEventListener("click", () => waShare(t().via + "\n" + SITE + (LANG==="en" ? "?lang=en" : "")));
+  setupMic();
+}
+
+function setupMic(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const mic = $("#mic"); if (!mic) return;
+  if (!SR) return;                       // button stays hidden when the phone cannot listen
+  mic.hidden = false;
+  let rec = null;
+  mic.addEventListener("click", () => {
+    if (rec){ rec.stop(); return; }
+    rec = new SR(); rec.lang = t().speechLang; rec.interimResults = false; rec.maxAlternatives = 1;
+    mic.classList.add("rec"); mic.setAttribute("aria-label", t().micStop);
+    const done = () => { mic.classList.remove("rec"); mic.setAttribute("aria-label", t().mic); rec = null; };
+    rec.onresult = ev => { const txt = ev.results[0][0].transcript; $("#q").value = txt; location.hash = "#/s/" + encodeURIComponent(txt); };
+    rec.onerror = () => { done(); toast(t().noMic); };
+    rec.onend = done;
+    try{ rec.start(); }catch(e){ done(); }
+  });
+}
+
+function cardHtml(it, showChips){
+  const c0 = catById[it.cats[0]];
+  const color = c0 ? c0.color : "#777";
+  const chips = showChips ? `<div class="chips">${it.cats.map(id => { const c=catById[id]; return c ? `<span class="chip" style="--c:${c.color}">${catIcon(id)}${esc(c[LANG].short)}</span>` : ""; }).join("")}</div>` : "";
+  const a = itemAddr(it), d = itemDet(it);
+  const rows = [];
+  if (a) rows.push(`<div class="row">${ui("pin")}<div class="t">${esc(a)}</div></div>`);
+  if (d) rows.push(`<div class="row">${ui("clock")}<div class="t">${esc(d)}</div></div>`);
+  if (it.p) rows.push(`<div class="row">${ui("phone")}<div class="t"><span class="phone">${esc(it.p)}</span></div></div>`);
+  if (it.p2) rows.push(`<div class="row">${ui("phone")}<div class="t"><span class="lbl">${esc(it.p2[LANG]||it.p2.en)}:</span> <a class="phone" href="${telHref(it.p2.num)}">${esc(it.p2.num)}</a></div></div>`);
+  if (it.w) rows.push(`<div class="row">${ui("link")}<div class="t"><a href="${esc(webHref(it.w))}" target="_blank" rel="noopener">${esc(it.w)}</a></div></div>`);
+  if (it.e) rows.push(`<div class="row">${ui("link")}<div class="t"><a href="mailto:${esc(it.e)}">${esc(it.e)}</a></div></div>`);
+  const acts = [
+    `<button type="button" class="act listen" data-act="listen" aria-label="${esc(t().listen)}">${ui("speaker")}<span class="lt">${esc(t().listen)}</span></button>`,
+    it.p ? `<a class="act call" href="${telHref(it.p)}" aria-label="${esc(t().call)} ${esc(itemName(it))}">${ui("phone")}<span>${esc(t().call)}</span></a>` : "",
+    a ? `<a class="act" href="${esc(mapHref(it))}" target="_blank" rel="noopener" aria-label="${esc(t().map)} ${esc(itemName(it))}">${ui("pin")}<span>${esc(t().map)}</span></a>` : "",
+    `<button type="button" class="act wa" data-act="share" aria-label="${esc(t().share)}">${ui("wa")}<span>${esc(t().share)}</span></button>`
+  ].join("");
+  return `<article class="card" style="--c:${color}" data-i="${ITEMS.indexOf(it)}"><h3>${esc(itemName(it))}</h3>${chips}${rows.join("")}<div class="acts">${acts}</div></article>`;
+}
+
+function wireCards(root){
+  root.querySelectorAll(".card").forEach(card => {
+    const it = ITEMS[+card.dataset.i];
+    const l = card.querySelector('[data-act="listen"]');
+    if (!canSpeak) l.hidden = true;
+    l.addEventListener("click", () => speak(cardSpeech(it), l));
+    card.querySelector('[data-act="share"]').addEventListener("click", () => shareItem(it));
+  });
+}
+
+function backHtml(){ return `<a class="back" href="#/" id="backBtn">${ui("back")}<span>${esc(t().back)}</span></a>`; }
+
+function categoryView(id){
+  stopSpeech();
+  const c = catById[id]; if (!c){ location.hash = "#/"; return; }
+  const list = ITEMS.filter(it => it.cats.includes(id));
+  const groups = [], seen = {};
+  list.forEach(it => { const g = itemGroup(it) || t().other; if(!(g in seen)){ seen[g]=[]; groups.push(g); } seen[g].push(it); });
+  const body = groups.map(g => (groups.length > 1 ? `<h2 class="group">${esc(g)}</h2>` : "") + seen[g].map(it => cardHtml(it,false)).join("")).join("");
+  app.innerHTML = `${backHtml()}
+    <div class="cathead">
+      <div class="ico" style="background:${c.color}">${catIcon(id)}</div>
+      <div><h1>${esc(c[LANG].short)}</h1><p>${esc(c[LANG].blurb)}</p></div>
+      <button type="button" class="bigspeak" id="catSpeak" aria-label="${esc(t().listen)}">${ui("speaker")}</button>
+    </div>
+    <p class="count">${esc(t().places(list.length))}</p>${body}`;
+  document.title = c[LANG].short + " - " + t().brand + " Norman";
+  $("#catSpeak").addEventListener("click", e => speak(c[LANG].short + ". " + c[LANG].blurb + ". " + t().spokenCount(list.length), e.currentTarget));
+  $("#backBtn").addEventListener("click", () => { if (VOICE) speak(t().back, null); });
+  if (!canSpeak) $("#catSpeak").hidden = true;
+  wireCards(app);
+  app.focus({preventScroll:true}); window.scrollTo(0,0);
+}
+
+const STOP = new Set(["necesito","quiero","busco","tengo","ayuda","donde","para","with","need","want","help","where","looking","for","the","and","como","que","por","con","una","uno","los","las","mis","can","get","find","dame","cerca","near","free","gratis"]);
+function searchItems(q){
+  const tokens = norm(q).split(/[^a-z0-9]+/).filter(w => w.length > 2 && !STOP.has(w)).map(w => w.replace(/(es|s)$/,""));
+  if (!tokens.length) return [];
+  const catHay = {}; CATS.forEach(c => { catHay[c.id] = norm(c.es.kw + " " + c.en.kw + " " + c.es.label + " " + c.en.label); });
+  const direct = [], viaCat = [];
+  ITEMS.forEach(it => {
+    const hay = norm([it.n, it.ns, it.a, it.as, it.d && it.d.en, it.d && it.d.es, it.g && it.g.en].join(" "));
+    let d = 0, c = 0;
+    tokens.forEach(tk => { if (hay.includes(tk)) d++; else if (it.cats.some(id => catHay[id].includes(tk))) c++; });
+    if (d) direct.push({it, s: d * 4 + c});
+    else if (c) viaCat.push({it, s: c});
+  });
+  direct.sort((x,y) => y.s - x.s);
+  const out = direct.map(x => x.it);
+  if (out.length < 8) out.push(...viaCat.map(x => x.it).slice(0, 12 - out.length));
+  return out.slice(0, 30);
+}
+
+function searchView(q){
+  stopSpeech();
+  const res = searchItems(q);
+  app.innerHTML = `${backHtml()}
+    <div class="cathead"><div><h1>“${esc(q)}”</h1><p>${esc(t().results(res.length))}</p></div></div>
+    ${res.length ? res.map(it => cardHtml(it,true)).join("") : `<div class="empty">${esc(t().none)}</div>`}`;
+  document.title = q + " - " + t().brand + " Norman";
+  wireCards(app);
+  window.scrollTo(0,0);
+}
+
+/* ===================== chrome ===================== */
+function paintChrome(){
+  document.documentElement.lang = LANG;
+  $("#sub").textContent = t().sub;
+  $("#brandName").textContent = t().brand;
+  document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
+  const vt = $("#voiceToggle");
+  vt.setAttribute("aria-pressed", String(VOICE));
+  vt.innerHTML = ui(VOICE ? "speaker" : "speakerOff") + `<span>${esc(VOICE ? t().voiceOn : t().voiceOff)}</span>`;
+  vt.hidden = !canSpeak;
+  $("#projLine").textContent = t().proj;
+  $("#footNote1").textContent = t().foot1;
+  $("#footNote2").textContent = t().foot2;
+  $("#thanks").textContent = t().thanks;
+}
+document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+  LANG = b.dataset.lang; store.set("lang", LANG); paintChrome(); route();
+}));
+$("#voiceToggle").addEventListener("click", () => {
+  VOICE = !VOICE; store.set("voice", VOICE ? "on" : "off"); paintChrome();
+  if (VOICE) speak(LANG==="es" ? "Voz encendida" : "Voice on", null);
+  else stopSpeech();
+});
+
+function route(){
+  const h = location.hash.replace(/^#\/?/, "");
+  const [kind, ...rest] = h.split("/");
+  const arg = decodeURIComponent(rest.join("/"));
+  if (kind === "c") categoryView(arg);
+  else if (kind === "s" && arg) searchView(arg);
+  else { homeView(); window.scrollTo(0,0); }
+}
+window.addEventListener("hashchange", route);
+paintChrome();
+route();
+})();
+</script>
+</body>
+</html>
