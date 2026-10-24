@@ -24,6 +24,7 @@ Quality varies by device.
 |---|---|
 | `index.html` | The whole site: layout, pictures, audio, search, sharing |
 | `data.js` | All listings, in Spanish and English side by side. **This is the file you edit to update the list.** |
+| `detained.js` | The "Si detienen a alguien" section (steps, consulates, links) in Spanish and English. **Needs review by an immigration attorney before the site is public.** |
 | `fcc-logo.jpeg` | Church logo shown in the footer |
 
 ## Updating a listing
@@ -49,3 +50,23 @@ Settings, then Pages, then choose the main branch and the root folder. The page 
 ## Credits
 
 Thank you to Mary Sallee, Martie Buzzard and everyone who gathered this information and keeps it up to date. The thanks appear in the footer of the page (in `index.html`, under `thanks`).
+
+## The "Si detienen a alguien" section
+
+A red button at the top of the home page opens steps for four situations: a family member is detained, ICE comes to the door,
+an agent stops someone on the street or in a car, and a family plan to prepare ahead. Each has a Listen button.
+It also lists immigration lawyers, the consulates of Mexico, Guatemala, Honduras and El Salvador, and links to printable red cards.
+
+The wording follows materials published by CLINIC (Catholic Legal Immigration Network) and the Immigrant Legal Resource Center (ILRC).
+It is a first draft. Martie (or an immigration attorney, for example at Catholic Charities) should review it before the site goes public.
+Edit `detained.js` to change any wording. Consulate numbers should be confirmed by phone.
+Venezuela has no confirmed working consulate in the United States, so that card points to a lawyer.
+
+## Privacy
+
+There are no visitor counters or analytics on this site on purpose. Nothing a person types or taps is saved or sent anywhere.
+The only thing kept in the browser is the language and the voice on/off setting.
+
+## Sharing
+
+The WhatsApp button on a listing sends the name, address, hours, phone, a map link and a link that opens that exact listing.

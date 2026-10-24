@@ -96,6 +96,31 @@ main{max-width:980px;margin:0 auto;padding:18px 16px 30px}
 
 .sharebar{margin-top:18px;display:flex;justify-content:center}
 
+/* ---------- crisis tile + detained page ---------- */
+.tiles li.wide{grid-column:1/-1}
+.tile.sos-tile{flex-direction:row;justify-content:flex-start;text-align:left;gap:16px;min-height:118px;padding:14px 18px;font-size:25px;border:4px solid #fff;outline:4px solid #A61B1B}
+.tile.sos-tile svg{width:78px;height:78px;flex:none}
+.tile.sos-tile small{display:block;font-size:17px;font-weight:400;opacity:.95;margin-top:4px;line-height:1.25}
+.notice{background:#fff;border-left:10px solid #A61B1B;border-radius:14px;padding:12px 16px;margin:6px 0 14px;font-size:18px;box-shadow:var(--shadow)}
+.jump{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:0 0 6px}
+@media (min-width:700px){.jump{grid-template-columns:repeat(3,1fr)}}
+.jump button{display:flex;align-items:center;gap:10px;min-height:60px;border:2px solid var(--indigo);background:#fff;color:var(--indigo);border-radius:14px;padding:6px 10px;font-weight:700;font-size:18px;text-align:left;cursor:pointer}
+.jump .jic{flex:none;width:36px;height:36px;border-radius:10px;background:#A61B1B;display:grid;place-items:center;color:#fff}
+.jump .jic svg{width:26px;height:26px}
+.dsec{margin-top:26px;scroll-margin-top:12px}
+.dhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.dhead .dico{flex:none;width:56px;height:56px;border-radius:16px;background:#A61B1B;display:grid;place-items:center;color:#fff}
+.dhead .dico svg{width:38px;height:38px}
+.dhead h2{margin:0;font-size:26px;line-height:1.15;flex:1 1 220px}
+.dhead .act{flex:0 0 auto;min-width:150px}
+.steps{margin:8px 0 0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:16px;box-shadow:var(--shadow);padding:12px 14px;margin:0 0 10px;font-size:21px;line-height:1.4}
+.steps li::before{content:counter(s);flex:none;width:38px;height:38px;border-radius:50%;background:var(--indigo);color:#fff;display:grid;place-items:center;font-weight:700;font-size:20px}
+.linklist{display:grid;gap:10px;margin-top:8px}
+.linklist .act{justify-content:flex-start;text-align:left;min-height:64px}
+.linklist .act small{display:block;font-weight:400;font-size:15px;color:var(--ink-soft)}
+.srcnote{margin:18px 0 0;color:var(--ink-soft);font-size:16px}
+
 /* ---------- list pages ---------- */
 .back{display:inline-flex;align-items:center;gap:10px;border:0;background:var(--indigo);color:#fff;border-radius:16px;padding:10px 20px 10px 14px;font-weight:700;font-size:21px;min-height:56px;cursor:pointer;text-decoration:none}
 .back svg{width:30px;height:30px}
@@ -176,6 +201,7 @@ footer{background:#fff;border-top:1px solid var(--line);margin-top:20px}
 <noscript><p style="padding:20px;font-size:20px">Esta página necesita JavaScript. / This page needs JavaScript.</p></noscript>
 
 <script src="data.js"></script>
+<script src="detained.js"></script>
 <script>
 (function(){
 "use strict";
@@ -193,6 +219,7 @@ let VOICE = store.get("voice") !== "off";
 /* ===================== text ===================== */
 const T = {
   es:{
+    detainedTile:"Si detienen a alguien", detainedSub:"Ayuda si ICE detiene a un familiar", jLawyer:"Abogados", jFind:"Buscar a alguien", jDoor:"Si ICE llega", jStreet:"Si lo para un agente", jCons:"Consulados", jPlan:"Plan de familia", secLawyers:"Llame a un abogado de inmigración", secCons:"Consulados: llame a su consulado", secLinks:"Para imprimir y más información", moreHelp:"Ver toda la ayuda", shareSection:"Enviar esta página por WhatsApp",
     brand:"Vecinos que Ayudan", sub:"Norman, Oklahoma", ask:"¿Qué ayuda necesita?", hint:"Toque una imagen.",
     listen:"Escuchar", stop:"Parar", call:"Llamar", map:"Mapa", share:"WhatsApp",
     back:"Inicio", voiceOn:"Voz: sí", voiceOff:"Voz: no", site:"Sitio web", email:"Correo",
@@ -214,6 +241,7 @@ const T = {
     langName:"es", speechLang:"es-US", sayStop:"Voz apagada"
   },
   en:{
+    detainedTile:"If someone is detained", detainedSub:"Help if ICE detains a family member", jLawyer:"Lawyers", jFind:"Find someone", jDoor:"If ICE comes", jStreet:"If an agent stops you", jCons:"Consulates", jPlan:"Family plan", secLawyers:"Call an immigration lawyer", secCons:"Consulates: call your consulate", secLinks:"To print and more information", moreHelp:"See all help", shareSection:"Send this page on WhatsApp",
     brand:"Helping Neighbors", sub:"Norman, Oklahoma", ask:"What help do you need?", hint:"Tap a picture.",
     listen:"Listen", stop:"Stop", call:"Call", map:"Map", share:"WhatsApp",
     back:"Home", voiceOn:"Voice: on", voiceOff:"Voice: off", site:"Website", email:"Email",
@@ -251,6 +279,7 @@ const ICON = {
   transport:`<rect ${W} x="8" y="6" width="48" height="43" rx="9"/><rect fill="#000" fill-opacity=".30" x="13" y="12" width="38" height="17" rx="4"/><circle fill="#000" fill-opacity=".30" cx="20" cy="39" r="3.500"/><circle fill="#000" fill-opacity=".30" cx="44" cy="39" r="3.500"/><rect ${W} x="12" y="47" width="10" height="11" rx="3"/><rect ${W} x="42" y="47" width="10" height="11" rx="3"/>`,
   seniors:`<circle ${W} cx="26" cy="10" r="7.500"/><path fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" d="M26 24l-2 18"/><path fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" d="M24 42l-6 15M24 42l7 15M27 28l13 9"/><path fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" d="M44 33v25"/>`,
   newcomers:`<circle ${S} cx="32" cy="32" r="25"/><path ${S} d="M7 32h50M32 7c-13 14-13 36 0 50M32 7c13 14 13 36 0 50"/>`,
+  detained:`<circle fill="none" stroke="#fff" stroke-width="14" cx="32" cy="32" r="22"/><g stroke="#A61B1B" stroke-width="8" stroke-linecap="butt"><path d="M41.900 22.100L53.200 10.800M22.100 22.100L10.800 10.800M41.900 41.900L53.200 53.200M22.100 41.900L10.800 53.200"/></g>`,
   pets:`<ellipse ${W} cx="32" cy="43" rx="16" ry="13"/><ellipse ${W} cx="11" cy="28" rx="6" ry="8" transform="rotate(-20 11 28)"/><ellipse ${W} cx="24" cy="15" rx="6" ry="8.500" transform="rotate(-8 24 15)"/><ellipse ${W} cx="40" cy="15" rx="6" ry="8.500" transform="rotate(8 40 15)"/><ellipse ${W} cx="53" cy="28" rx="6" ry="8" transform="rotate(20 53 28)"/>`
 };
 const svg = (inner, vb="0 0 64 64") => `<svg viewBox="${vb}" aria-hidden="true" focusable="false">${inner}</svg>`;
@@ -277,6 +306,9 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">"
 const norm = s => String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 const CATS = window.CATEGORIES, ITEMS = window.RESOURCES;
 const catById = Object.fromEntries(CATS.map(c => [c.id, c]));
+const DET = window.DETAINED, DET_COLOR = "#A61B1B";
+DET.consulates.forEach(c => ITEMS.push(c));
+catById.detained = { id:"detained", color:"#A61B1B", es:{short:T.es.detainedTile}, en:{short:T.en.detainedTile} };
 const itemName = it => (LANG === "es" && it.ns) ? it.ns : it.n;
 const itemAddr = it => (LANG === "es" && it.as) ? it.as : it.a;
 const itemDet = it => it.d ? (it.d[LANG] || it.d.en) : "";
@@ -295,11 +327,15 @@ const canSpeak = "speechSynthesis" in window && "SpeechSynthesisUtterance" in wi
 let voices = [];
 function loadVoices(){ if(canSpeak) voices = speechSynthesis.getVoices() || []; }
 if (canSpeak){ loadVoices(); speechSynthesis.addEventListener && speechSynthesis.addEventListener("voiceschanged", loadVoices); }
+const FEMALE = /paulina|m[oó]nica|sabina|helena|dalia|paloma|marisol|angelica|ang[eé]lica|elena|luc[ií]a|laura|camila|elvira|salom[eé]|sof[ií]a|google espa|samantha|zira|aria|jenny|karen|moira|tessa|female|mujer/i;
+const MALE = /jorge|diego|juan|pablo|ra[uú]l|carlos|enrique|miguel|alberto|andr[eé]s|alvaro|male|hombre|david|mark|daniel|alex|fred|tom\b/i;
 function pickVoice(){
   const base = LANG === "es" ? "es" : "en";
   const list = voices.filter(v => v.lang && v.lang.toLowerCase().replace("_","-").startsWith(base));
   const rank = v => { const l=v.lang.toLowerCase().replace("_","-");
-    return (LANG==="es" ? (l==="es-us"?0:l==="es-mx"?1:2) : (l==="en-us"?0:1)) + (v.localService?0:0.5); };
+    const region = LANG==="es" ? (l==="es-us"?0:l==="es-mx"?0.5:2) : (l==="en-us"?0:1);
+    const who = FEMALE.test(v.name) ? -2 : (MALE.test(v.name) ? 2 : 0);
+    return region + who + (v.localService?0:0.5); };
   list.sort((a,b)=>rank(a)-rank(b));
   return list[0] || null;
 }
@@ -356,13 +392,16 @@ function cardSpeech(it){
 
 /* ===================== sharing ===================== */
 function waShare(text){ window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank", "noopener"); }
+const slug = it => norm(it.n).replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const siteLink = hash => SITE + (LANG==="en" ? "?lang=en" : "") + (hash || "");
 function shareItem(it){
   const lines = [itemName(it)];
   if (itemAddr(it)) lines.push(itemAddr(it));
   if (itemDet(it)) lines.push(itemDet(it));
   if (it.p) lines.push(t().tel + ": " + it.p);
   if (it.w) lines.push(webHref(it.w));
-  lines.push("", t().via + ": " + SITE + (LANG==="en" ? "?lang=en" : ""));
+  if (itemAddr(it)) lines.push(mapHref(it));
+  lines.push("", t().via + ": " + siteLink("#/l/" + slug(it)));
   waShare(lines.join("\n"));
 }
 
@@ -385,7 +424,7 @@ function homeView(){
         <button type="button" class="iconbtn" id="mic" aria-label="${esc(t().mic)}" hidden>${ui("mic")}</button></div>
       <button class="go" type="submit">${esc(t().go)}</button>
     </form>
-    <ul class="tiles">${CATS.map(tileHtml).join("")}</ul>
+    <ul class="tiles"><li class="wide"><button type="button" class="tile sos-tile" data-cat="detained" style="background:#A61B1B" aria-label="${esc(t().detainedTile)}">${catIcon("detained")}<span>${esc(t().detainedTile)}<small>${esc(t().detainedSub)}</small></span></button></li>${CATS.map(tileHtml).join("")}</ul>
     <section class="sos" aria-labelledby="sosh">
       <h2 id="sosh">${esc(t().sosTitle)}</h2>
       <div class="sos-row">
@@ -398,13 +437,13 @@ function homeView(){
   document.title = t().brand + " Norman";
 
   $("#introSpeak").addEventListener("click", e => {
-    const names = CATS.map(c => c[LANG].short).join(", ");
+    const names = [t().detainedTile].concat(CATS.map(c => c[LANG].short)).join(", ");
     speak(t().spokenIntro + names + ".", e.currentTarget);
   });
   app.querySelectorAll(".tile").forEach(b => b.addEventListener("click", () => {
     const c = catById[b.dataset.cat];
     if (VOICE) speak(c[LANG].short, null); else stopSpeech();
-    location.hash = "#/c/" + c.id;
+    location.hash = c.id === "detained" ? "#/detained" : "#/c/" + c.id;
   }));
   $("#findForm").addEventListener("submit", e => { e.preventDefault(); const v=$("#q").value.trim(); if(v) location.hash = "#/s/" + encodeURIComponent(v); });
   $("#shareSite").addEventListener("click", () => waShare(t().via + "\n" + SITE + (LANG==="en" ? "?lang=en" : "")));
@@ -493,7 +532,7 @@ function searchItems(q){
   ITEMS.forEach(it => {
     const hay = norm([it.n, it.ns, it.a, it.as, it.d && it.d.en, it.d && it.d.es, it.g && it.g.en].join(" "));
     let d = 0, c = 0;
-    tokens.forEach(tk => { if (hay.includes(tk)) d++; else if (it.cats.some(id => catHay[id].includes(tk))) c++; });
+    tokens.forEach(tk => { if (hay.includes(tk)) d++; else if (it.cats.some(id => (catHay[id]||"").includes(tk))) c++; });
     if (d) direct.push({it, s: d * 4 + c});
     else if (c) viaCat.push({it, s: c});
   });
@@ -510,6 +549,75 @@ function searchView(q){
     <div class="cathead"><div><h1>“${esc(q)}”</h1><p>${esc(t().results(res.length))}</p></div></div>
     ${res.length ? res.map(it => cardHtml(it,true)).join("") : `<div class="empty">${esc(t().none)}</div>`}`;
   document.title = q + " - " + t().brand + " Norman";
+  wireCards(app);
+  window.scrollTo(0,0);
+}
+
+/* ===================== detained page + single listing ===================== */
+const DI = {
+  find:   svg(`<g fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"><circle cx="27" cy="27" r="15"/><path d="M38 38l16 16"/></g>`),
+  door:   svg(`<rect fill="#fff" x="14" y="6" width="36" height="52" rx="3"/><circle fill="#A61B1B" cx="42" cy="34" r="3.500"/>`),
+  street: svg(`<path fill="#fff" d="M8 38l6-16a6 6 0 0 1 6-4h24a6 6 0 0 1 6 4l6 16v14H8z"/><path fill="#A61B1B" d="M17 24h30l4 11H13z"/><circle fill="#A61B1B" cx="19" cy="46" r="4.500"/><circle fill="#A61B1B" cx="45" cy="46" r="4.500"/>`),
+  plan:   catIcon("children"),
+  lawyer: ui("phone"),
+  cons:   svg(`<path fill="#fff" d="M32 5 5 20v7h54v-7zM11 31h9v21h-9zM27.500 31h9v21h-9zM44 31h9v21h-9zM5 55h54v6H5z"/>`),
+  links:  svg(`<path fill="#fff" d="M14 4h26l12 12v44H14z"/><path fill="#A61B1B" fill-opacity=".55" d="M40 4v12h12zM22 28h24v4H22zM22 38h24v4H22zM22 48h16v4H22z"/>`)
+};
+function secHead(id, title, listenKey){
+  return `<div class="dhead"><div class="dico">${DI[id]}</div><h2>${esc(title)}</h2>${canSpeak && listenKey ? `<button type="button" class="act listen" data-act="dlisten" data-key="${listenKey}" aria-label="${esc(t().listen)}">${ui("speaker")}<span class="lt">${esc(t().listen)}</span></button>` : ""}</div>`;
+}
+function stepsSection(sec){
+  const steps = sec.steps[LANG];
+  return `<section class="dsec" id="sec-${sec.id}">${secHead(sec.id, sec.title[LANG], sec.id)}<ol class="steps">${steps.map(x => `<li>${esc(x)}</li>`).join("")}</ol></section>`;
+}
+function detainedSpeech(key){
+  const sec = DET.sections.find(x => x.id === key);
+  if (!sec) return "";
+  return sec.title[LANG] + ". " + sec.steps[LANG].map((x,i) => (i+1) + ". " + spokenText(x)).join(" ");
+}
+function detainedView(){
+  stopSpeech();
+  const lawyers = DET.lawyers.map(n => ITEMS.find(i => i.n === n)).filter(Boolean);
+  const cons = ITEMS.filter(i => i.cats.includes("detained"));
+  const sec = id => DET.sections.find(x => x.id === id);
+  const jumps = [["lawyer",t().jLawyer,"lawyer"],["find",t().jFind,"find"],["door",t().jDoor,"door"],["street",t().jStreet,"street"],["cons",t().jCons,"cons"],["plan",t().jPlan,"plan"]];
+  app.innerHTML = `${backHtml()}
+    <div class="cathead">
+      <div class="ico" style="background:${DET_COLOR}">${catIcon("detained")}</div>
+      <div><h1>${esc(t().detainedTile)}</h1><p>${esc(DET.sub[LANG])}</p></div>
+    </div>
+    <div class="notice">${esc(DET.notice[LANG])}</div>
+    <nav class="jump" aria-label="${esc(t().detainedTile)}">${jumps.map(j => `<button type="button" data-jump="${j[2]}"><span class="jic">${DI[j[2]]}</span><span>${esc(j[1])}</span></button>`).join("")}</nav>
+    <section class="dsec" id="sec-lawyer">${secHead("lawyer", t().secLawyers, "")}${lawyers.map(it => cardHtml(it,false)).join("")}</section>
+    ${stepsSection(sec("find"))}
+    ${stepsSection(sec("door"))}
+    ${stepsSection(sec("street"))}
+    <section class="dsec" id="sec-cons">${secHead("cons", t().secCons, "")}${cons.map(it => cardHtml(it,false)).join("")}</section>
+    ${stepsSection(sec("plan"))}
+    <section class="dsec" id="sec-links">${secHead("links", t().secLinks, "")}
+      <div class="linklist">${DET.links.map(l => `<a class="act" href="${esc(l.url)}" target="_blank" rel="noopener">${ui("link")}<span>${esc(l.label[LANG])}<small>${esc(l.src)}</small></span></a>`).join("")}</div>
+      <p class="srcnote">${esc(DET.source[LANG])}</p>
+      <div class="sharebar"><button type="button" class="act wa" id="shareDet" style="padding:6px 22px">${ui("wa")}<span>${esc(t().shareSection)}</span></button></div>
+    </section>`;
+  document.title = t().detainedTile + " - " + t().brand + " Norman";
+  $("#backBtn").addEventListener("click", () => { if (VOICE) speak(t().back, null); });
+  app.querySelectorAll("[data-jump]").forEach(b => b.addEventListener("click", () => {
+    const el = $("#sec-" + b.dataset.jump); if (el) el.scrollIntoView({behavior:"smooth", block:"start"});
+  }));
+  app.querySelectorAll('[data-act="dlisten"]').forEach(b => b.addEventListener("click", () => speak(detainedSpeech(b.dataset.key), b)));
+  $("#shareDet").addEventListener("click", () => waShare(t().detainedTile + "\n" + siteLink("#/detained")));
+  wireCards(app);
+  app.focus({preventScroll:true}); window.scrollTo(0,0);
+}
+
+function listingView(sl){
+  stopSpeech();
+  const it = ITEMS.find(i => slug(i) === sl);
+  if (!it){ location.hash = "#/"; return; }
+  app.innerHTML = `${backHtml()}<div style="height:14px"></div>${cardHtml(it,true)}
+    <p style="margin-top:18px"><a class="back" href="#/" style="background:var(--violet)"><span>${esc(t().moreHelp)}</span></a></p>`;
+  document.title = itemName(it) + " - " + t().brand + " Norman";
+  $("#backBtn").addEventListener("click", () => { if (VOICE) speak(t().back, null); });
   wireCards(app);
   window.scrollTo(0,0);
 }
@@ -542,7 +650,10 @@ function route(){
   const h = location.hash.replace(/^#\/?/, "");
   const [kind, ...rest] = h.split("/");
   const arg = decodeURIComponent(rest.join("/"));
-  if (kind === "c") categoryView(arg);
+  if (kind === "detained") detainedView();
+  else if (kind === "l") listingView(arg);
+  else if (kind === "c" && arg === "detained") detainedView();
+  else if (kind === "c") categoryView(arg);
   else if (kind === "s" && arg) searchView(arg);
   else { homeView(); window.scrollTo(0,0); }
 }
