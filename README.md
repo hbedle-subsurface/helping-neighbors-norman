@@ -1,7 +1,7 @@
 # Helping Neighbors Norman (Vecinos que Ayudan)
 
 A picture-first help directory for Norman, Oklahoma, built for people who may not read well in Spanish.
-Spanish is the default language, with an English button at the top.
+English is the default language, with a Spanish (Español) button at the top. A link with `?lang=es` at the end opens it in Spanish.
 
 Live page (after you turn on GitHub Pages): https://hbedle-subsurface.github.io/helping-neighbors-norman/
 
@@ -15,7 +15,7 @@ A project of First Congregational Church of Norman, UCC.
 - Tap the speaker on any listing to hear its name, address, hours and phone number read in Spanish.
 - Tap Llamar to call, Mapa for directions, Sitio web for the website (when we have one), or WhatsApp to send the listing to someone.
 - Tap 911, 988 or 211 at the bottom of the home page.
-- Tap **Descargar la lista en PDF / Download the list as a PDF** for a printable copy to share or hand out.
+- Tap **Ver o descargar la lista en PDF / View or download the list as a PDF**. The PDF opens in a new tab so people can look at it first, then download or print it from there.
 - Tap a language button (فارسی, پښتو, Tiếng Việt, 中文) for a one-page help sheet in that language.
 - Type or speak a word to search (the microphone shows only on phones that support it).
 
