@@ -2,9 +2,14 @@
    "If someone is detained" section (Si detienen a alguien).
    Spanish and English side by side.
 
-   STATUS: FIRST DRAFT, NOT YET REVIEWED BY AN IMMIGRATION ATTORNEY.
-   The steps follow materials published by CLINIC (Catholic Legal
-   Immigration Network) and the Immigrant Legal Resource Center (ILRC).
+   APPROACH (November 2026 revision): immigration law and policy
+   change often, so this page keeps to a few basic points that do
+   not change, and sends people to trusted sources that keep their
+   own information current and that work in Spanish and other
+   languages. Please do not add step-by-step legal instructions
+   here. Add a link to a trusted source instead.
+
+   STATUS: NOT YET REVIEWED BY AN IMMIGRATION ATTORNEY.
    Have the wording checked (Catholic Charities or another legal
    services group) before the site is made public.
 
@@ -14,13 +19,13 @@
 window.DETAINED = {
 
   sub: {
-    es: "Qué hacer si ICE llega a su casa, si lo para un agente, o si detienen a un familiar",
-    en: "What to do if ICE comes to your home, if an agent stops you, or if a family member is detained"
+    es: "Lo básico, y dónde encontrar información confiable y al día en su idioma",
+    en: "The basics, and where to find trusted, up-to-date information in your language"
   },
 
   notice: {
-    es: "Esta información es general y no es consejo legal. Si puede, hable con un abogado de inmigración.",
-    en: "This information is general and is not legal advice. If you can, talk with an immigration lawyer."
+    es: "Las leyes y las reglas de inmigración cambian seguido. Esta página solo da lo básico. Para información al día, llame a un abogado de inmigración o use los sitios de abajo. Muchos ayudan en español y en otros idiomas. Esto no es consejo legal.",
+    en: "Immigration laws and rules change often. This page gives only the basics. For up-to-date information, call an immigration lawyer or use the sites below. Many offer help in Spanish and other languages. This is not legal advice."
   },
 
   /* Lawyers shown first. Names must match listings in data.js exactly. */
@@ -31,104 +36,70 @@ window.DETAINED = {
       title: { es: "Si detienen a un familiar", en: "If a family member is detained" },
       steps: {
         es: [
-          "Reúna estos datos: nombre completo, fecha de nacimiento, país de nacimiento y el número A (9 números). El número A está en los papeles de inmigración.",
-          "Busque a la persona en el localizador de ICE: locator.ice.gov. Use el número A y el país de nacimiento, o el nombre escrito igual que en sus papeles.",
-          "Los menores de 18 años no aparecen. Si la detención es reciente, puede tardar en aparecer.",
+          "Anote el nombre completo, la fecha de nacimiento, el país de nacimiento y el número A, si lo tiene.",
+          "Llame a un abogado de inmigración (arriba).",
           "Llame al consulado de su país (más abajo).",
-          "Llame a un abogado de inmigración (arriba). Dígale el nombre y el número A.",
-          "Si hay niños, llame a la persona de confianza que los cuidará y avise a la escuela."
+          "El abogado o el consulado pueden ayudarle a encontrar a la persona. También está el localizador de ICE (más abajo)."
         ],
         en: [
-          "Gather this information: full name, date of birth, country of birth, and the A-number (9 digits). The A-number is on immigration papers.",
-          "Look for the person on the ICE locator: locator.ice.gov. Use the A-number and country of birth, or the name spelled the same way as on their papers.",
-          "Children under 18 do not appear. If the arrest was recent, it can take time to show up.",
+          "Write down the full name, date of birth, country of birth and A-number, if they have one.",
+          "Call an immigration lawyer (above).",
           "Call your country's consulate (below).",
-          "Call an immigration lawyer (above). Give the name and the A-number.",
-          "If there are children, call the trusted person who will care for them and tell the school."
+          "The lawyer or consulate can help find the person. There is also the ICE locator (below)."
         ]
       } },
 
-    { id: "door",
-      title: { es: "Si ICE llega a su puerta", en: "If ICE comes to your door" },
+    { id: "rights",
+      title: { es: "Sus derechos básicos", en: "Your basic rights" },
       steps: {
         es: [
-          "No abra la puerta. Hable a través de la puerta.",
-          "Pida que le muestren la orden por debajo de la puerta o en una ventana.",
-          "Solo una orden firmada por un juez les permite entrar a la casa. Un papel de ICE sin la firma de un juez no les da permiso.",
-          "Tiene derecho a guardar silencio. Diga: «Quiero guardar silencio y quiero hablar con un abogado.»",
-          "No diga de dónde es ni cómo llegó. No muestre papeles falsos.",
-          "No corra y no se esconda.",
-          "Si entran sin permiso, diga en voz alta: «No doy mi permiso.»",
-          "No firme nada antes de hablar con un abogado."
+          "Todas las personas en Estados Unidos tienen derechos bajo la Constitución, sin importar su estatus migratorio.",
+          "Tiene derecho a guardar silencio.",
+          "Tiene derecho a hablar con un abogado.",
+          "No firme ningún papel que no entienda.",
+          "Para más detalles en su idioma, vea las tarjetas rojas y los videos (más abajo)."
         ],
         en: [
-          "Do not open the door. Speak through the door.",
-          "Ask them to slide the warrant under the door or hold it up to a window.",
-          "Only a warrant signed by a judge lets them come into the home. An ICE paper without a judge's signature does not give them permission.",
-          "You have the right to stay silent. Say: \"I want to stay silent and I want to talk to a lawyer.\"",
-          "Do not say where you are from or how you arrived. Do not show false papers.",
-          "Do not run and do not hide.",
-          "If they come in without permission, say out loud: \"I do not give my permission.\"",
-          "Do not sign anything before you talk to a lawyer."
-        ]
-      } },
-
-    { id: "street",
-      title: { es: "Si lo para un agente en la calle o en el carro", en: "If an agent stops you on the street or in a car" },
-      steps: {
-        es: [
-          "Pregunte con calma: «¿Estoy detenido, o puedo irme?»",
-          "Si le dicen que puede irse, camine con calma. No corra.",
-          "Tiene derecho a guardar silencio. Diga: «Quiero guardar silencio.»",
-          "Si quieren revisar sus cosas o su carro, diga: «No doy mi permiso.»",
-          "No se resista ni toque a los agentes, aunque no esté de acuerdo.",
-          "Si tiene papeles de inmigración, llévelos con usted.",
-          "Pida hablar con un abogado.",
-          "Si es seguro, puede grabar."
-        ],
-        en: [
-          "Ask calmly: \"Am I being detained, or am I free to go?\"",
-          "If they say you are free to go, walk away calmly. Do not run.",
-          "You have the right to stay silent. Say: \"I want to stay silent.\"",
-          "If they want to search your things or your car, say: \"I do not give my permission.\"",
-          "Do not resist or touch the agents, even if you disagree.",
-          "If you have immigration papers, carry them with you.",
-          "Ask to talk to a lawyer.",
-          "If it is safe, you may record."
+          "Everyone in the United States has rights under the Constitution, whatever their immigration status.",
+          "You have the right to stay silent.",
+          "You have the right to talk to a lawyer.",
+          "Do not sign any paper you do not understand.",
+          "For more detail in your language, see the red cards and videos (below)."
         ]
       } },
 
     { id: "plan",
-      title: { es: "Plan de familia: prepárese antes", en: "Family plan: get ready ahead of time" },
+      title: { es: "Prepárese antes", en: "Get ready ahead of time" },
       steps: {
         es: [
-          "Elija a una persona de confianza para cuidar a sus hijos si usted no puede.",
-          "Memorice el número de teléfono de una persona de confianza.",
-          "Escriba el número A de cada persona de la familia y déselo a una persona de confianza.",
-          "Guarde copias de los papeles importantes (pasaportes, actas de nacimiento, papeles de inmigración). Diga a su persona de confianza dónde están.",
-          "Anote las medicinas importantes que toma cada persona.",
+          "Elija a una persona de confianza que pueda cuidar a sus hijos.",
+          "Guarde los papeles importantes y los números de teléfono donde esa persona los pueda encontrar.",
           "Hable con un abogado de inmigración antes de que pase algo.",
-          "Regístrese en su consulado.",
-          "Pregunte a un abogado sobre un permiso por escrito para que otra persona cuide a sus hijos."
+          "Hay un plan familiar para llenar en los enlaces de abajo."
         ],
         en: [
-          "Choose a trusted person to care for your children if you cannot.",
-          "Memorize the phone number of one trusted person.",
-          "Write down the A-number of each person in the family and give it to a trusted person.",
-          "Keep copies of important papers (passports, birth certificates, immigration papers). Tell your trusted person where they are.",
-          "Write down the important medicines each person takes.",
+          "Choose a trusted person who can care for your children.",
+          "Keep important papers and phone numbers where that person can find them.",
           "Talk to an immigration lawyer before anything happens.",
-          "Register with your consulate.",
-          "Ask a lawyer about a written permission so another person can care for your children."
+          "A family plan to fill in is in the links below."
         ]
       } }
+  ],
+
+  /* Phone lines, shown as listing cards. Good for people who do not read. */
+  phones: [
+    { n: "Immigration court case information (EOIR)", ns: "Información de casos de la corte de inmigración (EOIR)",
+      p: "800-898-7180",
+      d: { en: "Government recorded line, 24 hours a day, in English and Spanish. Have the A-number ready.",
+           es: "Línea grabada del gobierno, las 24 horas, en español y en inglés. Tenga listo el número A." },
+      cats: ["detained"], g: { en: "", es: "" }, phoneLine: true }
   ],
 
   /* Consulates, shown as listing cards. Confirm by phone before relying on them. */
   consulates: [
     { n: "Consulate of Mexico - Oklahoma City", ns: "Consulado de México - Oklahoma City",
       a: "1131 W. Sheridan Ave., Oklahoma City", p: "405-753-5622",
-      d: { en: "Open to the public 7:00 a.m. to 5:00 p.m.", es: "Atención al público de 7:00 a 17:00." },
+      d: { en: "Open to the public 7:00 a.m. to 5:00 p.m.", es: "Atención al público de 7:00 de la mañana a 5:00 de la tarde." },
       cats: ["detained"], g: { en: "", es: "" } },
     { n: "Consulate of Guatemala - Oklahoma City", ns: "Consulado de Guatemala - Oklahoma City",
       a: "5909 NW Expressway, Suite 100, Oklahoma City", p: "405-603-6628",
@@ -152,22 +123,38 @@ window.DETAINED = {
       cats: ["detained"], g: { en: "", es: "" } }
   ],
 
-  /* Printable and outside resources */
+  /* Trusted sources that keep their own information up to date.
+     "langs" says which languages each one offers. Check each link
+     every few months and remove any that stop working. */
   links: [
-    { url: "https://www.ilrc.org/red-cards-tarjetas-rojas", src: "ILRC",
-      label: { es: "Tarjeta roja para imprimir: sus derechos", en: "Red card to print: your rights" } },
-    { url: "https://www.ilrc.org/resources/step-step-family-preparedness-plan", src: "ILRC",
-      label: { es: "Plan de preparación familiar paso a paso", en: "Step-by-step family preparedness plan" } },
-    { url: "https://locator.ice.gov/", src: "ICE",
-      label: { es: "Localizador de ICE: buscar a una persona detenida", en: "ICE locator: find a detained person" } },
+    { url: "https://www.ilrc.org/red-cards-tarjetas-rojas", src: "Immigrant Legal Resource Center (ILRC)",
+      label: { es: "Tarjetas rojas para imprimir: sus derechos", en: "Red cards to print: your rights" },
+      langs: { es: "En español, inglés y más de 50 idiomas, incluso mam, náhuatl y tsotsil", en: "In Spanish, English and more than 50 other languages, including Mam, Nahuatl and Tsotsil" } },
+    { url: "https://www.wehaverights.us/", src: "We Have Rights (ACLU)",
+      label: { es: "Videos: conozca sus derechos", en: "Videos: know your rights" },
+      langs: { es: "Videos en español, inglés y otros idiomas", en: "Videos in Spanish, English and other languages" } },
     { url: "https://www.immigrationlawhelp.org/", src: "ImmigrationLawHelp.org",
-      label: { es: "Buscar ayuda legal gratuita o de bajo costo", en: "Find free or low-cost legal help" } },
-    { url: "https://www.wehaverights.us/", src: "We Have Rights",
-      label: { es: "Videos: conozca sus derechos", en: "Videos: know your rights" } }
+      label: { es: "Buscar ayuda legal gratuita o de bajo costo cerca de usted", en: "Find free or low-cost legal help near you" },
+      langs: { es: "Escoja «Spanish» arriba a la derecha", en: "Choose Spanish at the top right" } },
+    { url: "https://www.justice.gov/eoir/list-pro-bono-legal-service-providers", src: "U.S. Department of Justice (EOIR)",
+      label: { es: "Lista oficial de abogados gratuitos para casos en la corte de inmigración", en: "Official list of free lawyers for immigration court cases" },
+      langs: { es: "En inglés", en: "In English" } },
+    { url: "https://locator.ice.gov/", src: "ICE",
+      label: { es: "Localizador de ICE: buscar a una persona detenida", en: "ICE locator: find a detained person" },
+      langs: { es: "Vea el folleto en español (abajo)", en: "See the Spanish brochure (below)" } },
+    { url: "https://www.ice.gov/doclib/news/library/factsheets/pdf/odls-brochure-esp.pdf", src: "ICE",
+      label: { es: "Cómo usar el localizador de ICE (folleto)", en: "How to use the ICE locator (brochure)" },
+      langs: { es: "En español", en: "In Spanish" } },
+    { url: "https://www.ilrc.org/resources/step-step-family-preparedness-plan", src: "Immigrant Legal Resource Center (ILRC)",
+      label: { es: "Plan familiar para llenar", en: "Family plan to fill in" },
+      langs: { es: "", en: "" } },
+    { url: "https://www.usa.gov/es/asistencia-legal-gratis", src: "USAGov en español",
+      label: { es: "Asistencia legal gratis o de bajo costo (gobierno de EE. UU.)", en: "Free or low-cost legal help (U.S. government, in Spanish)" },
+      langs: { es: "En español", en: "In Spanish" } }
   ],
 
   source: {
-    es: "Basado en materiales publicados por CLINIC (Catholic Legal Immigration Network) y por el Immigrant Legal Resource Center (ILRC).",
-    en: "Based on materials published by CLINIC (Catholic Legal Immigration Network) and the Immigrant Legal Resource Center (ILRC)."
+    es: "Esta página da solo información general y le dirige a organizaciones que mantienen su información al día. Revisada en noviembre de 2026.",
+    en: "This page gives only general information and points to organizations that keep their information up to date. Reviewed November 2026."
   }
 };
