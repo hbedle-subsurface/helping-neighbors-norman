@@ -19,8 +19,15 @@ A project of First Congregational Church of Norman, UCC.
 - Tap a language button (فارسی, پښتو, Tiếng Việt, 中文) for a one-page help sheet in that language.
 - Type or speak a word to search (the microphone shows only on phones that support it).
 
-The voices are the ones built into the person's phone or computer, so they cost nothing and work offline once the page has loaded.
-Quality varies by device.
+The voices are the ones built into the person's phone or computer, so they cost nothing.
+The site automatically picks the most natural-sounding voice the device has: "Natural" voices in Microsoft Edge,
+Google voices in Chrome and on Android, and "Enhanced" or "Premium" voices on iPhone and Mac. The older robotic voices are used only
+when nothing better is installed. Long readings are spoken one sentence at a time, which sounds smoother.
+
+To get better voices on a device:
+- **iPhone/iPad:** Settings, Accessibility, Spoken Content, Voices, choose English or Spanish, then download a voice marked Enhanced or Premium.
+- **Android:** Settings, search "text-to-speech", choose Speech Services by Google, then install the English and Spanish voice data.
+- **Windows:** opening the site in Microsoft Edge gives the most natural voices.
 
 ## Files
 

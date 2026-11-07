@@ -489,18 +489,32 @@ const canSpeak = "speechSynthesis" in window && "SpeechSynthesisUtterance" in wi
 let voices = [];
 function loadVoices(){ if(canSpeak) voices = speechSynthesis.getVoices() || []; }
 if (canSpeak){ loadVoices(); speechSynthesis.addEventListener && speechSynthesis.addEventListener("voiceschanged", loadVoices); }
-const FEMALE = /paulina|m[oó]nica|sabina|helena|dalia|paloma|marisol|angelica|ang[eé]lica|elena|luc[ií]a|laura|camila|elvira|salom[eé]|sof[ií]a|google espa|samantha|zira|aria|jenny|karen|moira|tessa|female|mujer/i;
-const MALE = /jorge|diego|juan|pablo|ra[uú]l|carlos|enrique|miguel|alberto|andr[eé]s|alvaro|male|hombre|david|mark|daniel|alex|fred|tom\b/i;
-function pickVoice(){
+/* ---- choosing the most natural voice on this phone or computer ----
+   Best: "Natural"/"Neural" voices (Microsoft Edge, Windows 11), "Premium"/"Enhanced"
+   voices (iPhone, iPad, Mac) and Google voices (Chrome, Android). The old built-in
+   voices and the novelty Mac voices sound the most robotic, so they go last. */
+const FEMALE = /paulina|m[oó]nica|sabina|helena|dalia|paloma|marisol|ang[eé]lica|elena|luc[ií]a|laura|camila|elvira|salom[eé]|sof[ií]a|ximena|google espa|samantha|zira|aria|ava|jenny|emma|michelle|allison|susan|karen|moira|tessa|female|mujer/i;
+const MALE = /jorge|diego|juan|pablo|ra[uú]l|carlos|enrique|miguel|alberto|alonso|andr[eé]s|alvaro|male|hombre|david|mark|daniel|alex|fred|tom\b|guy|andrew|brian|eric/i;
+const ROBOTIC = /espeak|eloquence|\b(eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley|albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|deranged|hysterical|junior|ralph|kathy|fred)\b/i;
+function voiceQuality(v){
+  const n = v.name || "";
+  if (ROBOTIC.test(n)) return 9;
+  if (/natural|neural/i.test(n)) return 0;
+  if (/premium/i.test(n)) return 0.5;
+  if (/enhanced|siri/i.test(n)) return 1;
+  if (/^google/i.test(n)) return 1.5;
+  return 4;
+}
+function langVoices(){
   const base = LANG === "es" ? "es" : "en";
   const list = voices.filter(v => v.lang && v.lang.toLowerCase().replace("_","-").startsWith(base));
-  const rank = v => { const l=v.lang.toLowerCase().replace("_","-");
-    const region = LANG==="es" ? (l==="es-us"?0:l==="es-mx"?0.5:2) : (l==="en-us"?0:1);
-    const who = FEMALE.test(v.name) ? -2 : (MALE.test(v.name) ? 2 : 0);
-    return region + who + (v.localService?0:0.5); };
-  list.sort((a,b)=>rank(a)-rank(b));
-  return list[0] || null;
+  const rank = v => { const l = v.lang.toLowerCase().replace("_","-");
+    const region = LANG==="es" ? (l==="es-us" ? 0 : l==="es-mx" ? 0.3 : 1) : (l==="en-us" ? 0 : 0.6);
+    const who = FEMALE.test(v.name) ? -0.4 : (MALE.test(v.name) ? 0.2 : 0);
+    return voiceQuality(v) * 3 + region + who; };
+  return list.sort((a,b) => rank(a) - rank(b));
 }
+function pickVoice(){ return langVoices()[0] || null; }
 let speakingBtn = null;
 function setSpeakingUI(btn){
   document.querySelectorAll(".speaking").forEach(b => { b.classList.remove("speaking","on"); b.dataset.state=""; refreshListenLabel(b); });
@@ -514,18 +528,32 @@ function refreshListenLabel(b){
   b.setAttribute("aria-label", (on ? t().stop : t().listen));
 }
 function stopSpeech(){ if(canSpeak) speechSynthesis.cancel(); setSpeakingUI(null); }
+/* Long text is read one sentence at a time. Voices sound more natural that way,
+   and Chrome stops long readings after about 15 seconds if they are sent in one piece. */
+function chunks(text){
+  const parts = String(text).match(/[^.!?;:]+[.!?;:]*\s*/g) || [String(text)];
+  const out = []; let cur = "";
+  parts.forEach(p => { if ((cur + p).length > 180 && cur){ out.push(cur.trim()); cur = p; } else cur += p; });
+  if (cur.trim()) out.push(cur.trim());
+  return out;
+}
+let speakRun = 0;
 function speak(text, btn){
   if (!canSpeak || !text) return;
   if (btn && btn === speakingBtn){ stopSpeech(); return; }
   speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
+  const run = ++speakRun;
   const v = pickVoice();
-  if (v) u.voice = v;
-  u.lang = v ? v.lang : t().speechLang;
-  u.rate = 0.9;
-  u.onend = u.onerror = () => { if (speakingBtn === btn) setSpeakingUI(null); };
+  const list = chunks(text);
   setSpeakingUI(btn || null);
-  speechSynthesis.speak(u);
+  list.forEach((piece, i) => {
+    const u = new SpeechSynthesisUtterance(piece);
+    if (v) u.voice = v;
+    u.lang = v ? v.lang : t().speechLang;
+    u.rate = voiceQuality(v || {}) <= 1.5 ? 0.95 : 0.9;
+    if (i === list.length - 1) u.onend = u.onerror = () => { if (run === speakRun && speakingBtn === btn) setSpeakingUI(null); };
+    speechSynthesis.speak(u);
+  });
 }
 /* ---- reading aloud: write out short forms so the voice says whole words ----
    House numbers: "pairs" says 2540 as "twenty-five forty", the way people say a
