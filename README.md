@@ -10,12 +10,11 @@ A project of First Congregational Church of Norman, UCC.
 ## What people can do
 
 - Tap a big picture (food, a place to stay, health, and so on). The name of the picture is spoken aloud.
-- Tap **Ver toda la lista / See the whole list** (just under the search box) to see every listing by topic, or **Imprimir toda la lista / Print the whole list** to print it.
+- Tap **Ver toda la lista / See the whole list** (just under the search box) to see every listing by topic, or **Print the whole list / Imprimir toda la lista** to open a black-and-white PDF of the whole list to print or save.
 - On each topic page, tap **Imprimir esta lista / Print this list**. On the whole-list page, each topic also has its own **Print this part** button.
 - Tap the speaker on any listing to hear its name, address, hours and phone number read in Spanish.
 - Tap Llamar to call, Mapa for directions, Sitio web for the website (when we have one), or WhatsApp to send the listing to someone.
 - Tap 911, 988 or 211 at the bottom of the home page.
-- Tap **Ver o descargar la lista en PDF / View or download the list as a PDF**. The PDF opens in a new tab so people can look at it first, then download or print it from there.
 - Tap a language button (فارسی, پښتو, Tiếng Việt, 中文) for a one-page help sheet in that language.
 - Type or speak a word to search (the microphone shows only on phones that support it).
 
@@ -37,7 +36,7 @@ To get better voices on a device:
 | `data.js` | All listings, in Spanish and English side by side. **This is the file you edit to update the list.** |
 | `detained.js` | The "Si detienen a alguien" section (steps, consulates, links) in Spanish and English. **Needs review by an immigration attorney before the site is public.** |
 | `fcc-logo.jpeg` | Church logo shown in the footer |
-| `lista-de-ayuda-es.pdf`, `help-list-en.pdf` | The whole list as printable PDFs (Spanish and English), with emergency numbers, a QR code to the site, and the "If someone is detained" basics. The site's "Descargar la lista en PDF" button opens the one that matches the language. These are made from `data.js` and `detained.js`, so they need to be rebuilt when the list changes |
+| `help-list-en.pdf`, `lista-de-ayuda-es.pdf` | The whole list for printing, in English and Spanish: landscape, black and white, 12-point text, a gridded table for each category. The "Print the whole list" button opens the one that matches the language in a new tab, where it can be printed or saved. These are made from `data.js` and `detained.js`, so they need to be rebuilt when the list changes |
 | `help-sheet-farsi.pdf`, `help-sheet-pashto.pdf`, `help-sheet-vietnamese.pdf`, `help-sheet-chinese.pdf` | One-sheet (front and back) help pages in Farsi, Pashto, Vietnamese and Chinese (Mandarin): emergency numbers, an "I need an interpreter" line to show in English, immigration legal help, refugee support, English classes, community groups, basic rights and a QR code to the full list. Linked from the "Help sheets in other languages" buttons on the home page. **Translations need review by a native speaker before wide sharing.** |
 | `listings-without-website.csv` | Listings that do not have a website yet. Fill in the last column as you find them, then add each one to `data.js` as `"w":"example.org"` |
 

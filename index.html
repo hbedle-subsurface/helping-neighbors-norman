@@ -177,6 +177,7 @@ footer{background:#fff;border-top:1px solid var(--line);margin-top:20px}
 .langbtn{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:62px;border-radius:14px;border:2px solid var(--indigo);color:var(--indigo);text-decoration:none;padding:4px 6px;text-align:center;line-height:1.2}
 .langbtn b{font-size:22px;font-weight:700}
 .langbtn small{font-size:13px;color:var(--ink-soft)}
+.tool .pdfnote{display:block;font-weight:400;font-size:.78em;opacity:.85}
 .tool.dl{grid-column:1/-1;border-style:dashed;min-height:56px;font-size:18px;justify-content:center}
 @media (min-width:700px){.tools.one{grid-template-columns:minmax(0,420px)}}
 .catjump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
@@ -372,7 +373,7 @@ const T = {
   es:{
     otherLangs:"Hojas de ayuda en otros idiomas · Help sheets in other languages", moreOptions:"Más opciones",
     detainedTile:"Si detienen a alguien", detainedSub:"Ayuda si ICE detiene a un familiar", jLawyer:"Abogados", jFind:"Buscar a alguien", jRights:"Sus derechos", jCons:"Consulados", jPlan:"Prepárese", jLinks:"Sitios confiables", secLawyers:"Llame a un abogado de inmigración", secPhones:"Línea de teléfono del gobierno", secCons:"Consulados: llame a su consulado", secLinks:"Sitios confiables y al día, en su idioma", moreHelp:"Ver toda la ayuda", shareSection:"Enviar esta página por WhatsApp",
-    seeAll:"Ver toda la lista", printAll:"Imprimir toda la lista", download:"Ver o descargar la lista en PDF", pdf:"lista-de-ayuda-es.pdf", printThis:"Imprimir esta lista", printPart:"Imprimir esta parte", printPage:"Imprimir esta página",
+    seeAll:"Ver toda la lista", printAll:"Imprimir toda la lista", download:"Ver o descargar la lista en PDF", printNote:"PDF en blanco y negro, horizontal", pdf:"lista-de-ayuda-es.pdf", printThis:"Imprimir esta lista", printPart:"Imprimir esta parte", printPage:"Imprimir esta página",
     allTitle:"Toda la lista", allSub:"Toda la ayuda, por tema. Toque un tema para ir a esa parte.", goTo:"Ir a:", printedNote:"Los horarios y las reglas cambian. Llame antes de ir.", printedOn:"Impreso el ",
     brand:"Vecinos que Ayudan", sub:"Norman, Oklahoma", ask:"¿Qué ayuda necesita?", hint:"Toque una imagen.",
     listen:"Escuchar", stop:"Parar", call:"Llamar", map:"Mapa", share:"WhatsApp",
@@ -397,7 +398,7 @@ const T = {
   en:{
     otherLangs:"Help sheets in other languages · Hojas de ayuda en otros idiomas", moreOptions:"More options",
     detainedTile:"If someone is detained", detainedSub:"Help if ICE detains a family member", jLawyer:"Lawyers", jFind:"Find someone", jRights:"Your rights", jCons:"Consulates", jPlan:"Get ready", jLinks:"Trusted sites", secLawyers:"Call an immigration lawyer", secPhones:"Government phone line", secCons:"Consulates: call your consulate", secLinks:"Trusted, up-to-date sites in your language", moreHelp:"See all help", shareSection:"Send this page on WhatsApp",
-    seeAll:"See the whole list", printAll:"Print the whole list", download:"View or download the list as a PDF", pdf:"help-list-en.pdf", printThis:"Print this list", printPart:"Print this part", printPage:"Print this page",
+    seeAll:"See the whole list", printAll:"Print the whole list", download:"View or download the list as a PDF", printNote:"Black-and-white PDF, landscape", pdf:"help-list-en.pdf", printThis:"Print this list", printPart:"Print this part", printPage:"Print this page",
     allTitle:"The whole list", allSub:"All the help, by topic. Tap a topic to jump to it.", goTo:"Go to:", printedNote:"Hours and rules change. Please call before you go.", printedOn:"Printed ",
     brand:"Helping Neighbors", sub:"Norman, Oklahoma", ask:"What help do you need?", hint:"Tap a picture.",
     listen:"Listen", stop:"Stop", call:"Call", map:"Map", share:"WhatsApp",
@@ -710,15 +711,20 @@ function langsHtml(){
   return `<section class="langs" aria-label="${esc(t().otherLangs)}"><h2>${ui("globe")}<span>${esc(t().otherLangs)}</span></h2><div class="langrow">${OTHER_LANGS.map(l =>
     `<a class="langbtn" href="${l.file}" target="_blank" rel="noopener"><b lang="${l.lang}" dir="${l.dir}">${l.name}</b><small>${esc(l.en)}</small></a>`).join("")}</div></section>`;
 }
+/* The whole list prints from a black-and-white, landscape PDF table (help-list-en.pdf / lista-de-ayuda-es.pdf).
+   It opens in a new tab so people can look at it, print it or save it. */
+function printPdfHtml(){
+  return `<a class="tool print" href="${esc(t().pdf)}" target="_blank" rel="noopener">${ui("printer")}<span>${esc(t().printAll)}<small class="pdfnote">${esc(t().printNote)}</small></span></a>`;
+}
 function downloadHtml(){
   return `<a class="tool dl" href="${esc(t().pdf)}" target="_blank" rel="noopener">${ui("download")}<span>${esc(t().download)}</span></a>`;
 }
 function toolsHtml(kind){
-  if (kind === "side") return `<div class="tools side"><a class="tool" href="#/all">${ui("list")}<span>${esc(t().seeAll)}</span></a><button type="button" class="tool print" data-print="all">${ui("printer")}<span>${esc(t().printAll)}</span></button>${downloadHtml()}</div>`;
+  if (kind === "side") return `<div class="tools side"><a class="tool" href="#/all">${ui("list")}<span>${esc(t().seeAll)}</span></a>${printPdfHtml()}</div>`;
   // kind "all": home page (see all + print all); "cat": a category page; "page": just print
-  if (kind === "all") return `<div class="tools"><a class="tool" href="#/all">${ui("list")}<span>${esc(t().seeAll)}</span></a><button type="button" class="tool print" data-print="all">${ui("printer")}<span>${esc(t().printAll)}</span></button>${downloadHtml()}</div>`;
+  if (kind === "all") return `<div class="tools"><a class="tool" href="#/all">${ui("list")}<span>${esc(t().seeAll)}</span></a>${printPdfHtml()}</div>`;
   if (kind === "cat") return `<div class="tools"><button type="button" class="tool print" data-print="page">${ui("printer")}<span>${esc(t().printThis)}</span></button><a class="tool" href="#/all">${ui("list")}<span>${esc(t().seeAll)}</span></a></div>`;
-  if (kind === "allpage") return `<div class="tools"><button type="button" class="tool print" data-print="page">${ui("printer")}<span>${esc(t().printAll)}</span></button>${downloadHtml().replace('class="tool dl"','class="tool"')}</div>`;
+  if (kind === "allpage") return `<div class="tools one">${printPdfHtml()}</div>`;
   return `<div class="tools one"><button type="button" class="tool print" data-print="page">${ui("printer")}<span>${esc(t().printPage)}</span></button></div>`;
 }
 function printHead(title){
